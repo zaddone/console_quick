@@ -1,6 +1,7 @@
+#include <QtQml>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include "view.h"
+#include "show.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,10 +14,14 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     //engine.rootContext()
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-    if (engine.rootObjects().isEmpty())
+    QList<QObject *> qmlList = engine.rootObjects();
+    if (qmlList.isEmpty())
         return -1;
-
     //new View(&engine,grpc::CreateChannel("localhost:50051",grpc::InsecureChannelCredentials()));
-    new View(&engine,grpc::CreateChannel("192.168.1.60:50051",grpc::InsecureChannelCredentials()));
+
+    Show *s = new Show(qmlList[0], "192.168.1.60:50051");
+
+    engine.rootContext()->setContextProperty("view", s);
+    //s->Start();
     return app.exec();
 }

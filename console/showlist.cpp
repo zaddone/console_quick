@@ -1,9 +1,11 @@
 #include "showlist.h"
+/**
 #include <QThread>
 
 ShowList::ShowList(const QString &insName,  QObject *parent) :
     QObject(parent)
 {
+    qRegisterMetaType<LastTime>("LastTime&");
     this->InsName = insName;
     this->List.reserve(30);
     timer.setInterval(1000/24);
@@ -78,7 +80,6 @@ void ShowList::writeList(LastTime &lt){
         }else if (d>0) {
             LastTime * nlt = new LastTime();
             nlt->CopyFrom(lt);
-            //List.append(QVariant::fromValue(nlt));
             List.insert(i,QVariant::fromValue(nlt));
             mutex.unlock();
             return;
@@ -90,3 +91,4 @@ void ShowList::writeList(LastTime &lt){
     //List.append(QVariant::fromValue(lt));
     mutex.unlock();
 }
+**/

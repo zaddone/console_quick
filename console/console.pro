@@ -13,11 +13,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += main.cpp \
-    console.grpc.pb.cc \
-    console.pb.cc \
-    client.cpp \
-    showlist.cpp \
-    view.cpp
+    show.cpp \
+    showlist.cpp
+
 
 RESOURCES += qml.qrc
 
@@ -33,12 +31,16 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    console.grpc.pb.h \
-    console.pb.h \
-    client.h \
+    show.h \
     showlist.h \
-    view.h
+    ../Connection/connection.h
 
-unix: CONFIG += link_pkgconfig
-unix: PKGCONFIG += protobuf
-unix: PKGCONFIG += grpc++
+DISTFILES +=
+
+LIBS += $$PWD/../lib/debug/libConnection.a
+
+unix {
+    CONFIG += link_pkgconfig
+    PKGCONFIG += protobuf
+    PKGCONFIG += grpc++
+}

@@ -31,8 +31,8 @@ ApplicationWindow {
         wrapMode:TextEdit.WordWrap
         //onCursorRectangleChanged: flick.ensureVisible(cursorRectangle)
         Keys.onReturnPressed: {
+            //appendModel(text);
             view.HandleInput(text);
-            appendModel(text);
             text= "";
         }
         function getEditHeight(x,y){

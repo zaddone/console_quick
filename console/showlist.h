@@ -1,10 +1,17 @@
 #ifndef SHOWLIST_H
 #define SHOWLIST_H
-
+/**
 #include <QObject>
 #include <QVector>
 #include <QVariant>
-#include "client.h"
+#include <QMutex>
+#include <QTimer>
+#include <QDateTime>
+//#include "client.h"
+#include "Connection/console.grpc.pb.h"
+
+using console::LastTime;
+Q_DECLARE_METATYPE(LastTime *)
 
 class ShowList : public QObject
 {
@@ -32,5 +39,5 @@ private:
     //bool isRun;
 
 };
-
+**/
 #endif // SHOWLIST_H
