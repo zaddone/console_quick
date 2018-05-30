@@ -11,6 +11,7 @@ ListInstrument::ListInstrument(Connect *conn, const int & Interval, QObject *par
 }
 
 ListInstrument::~ListInstrument(){
+
     QHash<QString ,Instrument *>::iterator it;
     for(it=this->ListIns.begin();it!=this->ListIns.end();++it){
         delete (*it);
@@ -18,8 +19,6 @@ ListInstrument::~ListInstrument(){
     ListIns.clear();
     OnlineIns.clear();
 
-
-    //this->timer.stop();
 }
 void ListInstrument::_reset(){
     qDebug()  << "ListInstrument reset." ;

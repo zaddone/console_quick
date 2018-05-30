@@ -22,6 +22,7 @@ signals:
 public slots:
     void request();
     void show(const QVariant & val);
+    //void setVal(const QVariant & val);
     void SetInsName(const QString &name);
 private:
     QString InsName;

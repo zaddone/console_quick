@@ -11,6 +11,9 @@ using grpc::Status;
 using console::Request;
 using console::Instrument;
 Q_DECLARE_METATYPE(Instrument *)
+
+//#define GRPC_ARG_KEEPALIVE_PERMIT_WITHOUT_CALLS = 1
+
 class ListInstrument :public GreeterClient
 {
     Q_OBJECT

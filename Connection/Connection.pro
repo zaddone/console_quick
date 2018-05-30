@@ -6,6 +6,8 @@
 
 QT       -= gui
 
+QT += quick
+QT += qml
 TARGET = Connection
 TEMPLATE = lib
 CONFIG += staticlib
@@ -47,3 +49,6 @@ unix {
     #PKGCONFIG += protobuf
     #PKGCONFIG += grpc++
 }
+
+DISTFILES += \
+    ../lib/debug/qml/LastTime.qml

@@ -1,9 +1,10 @@
 #include "greeter.h"
 
-GreeterClient::GreeterClient(Connect *conn,const int & Interval, QObject *parent) :
+GreeterClient::GreeterClient(Connect *conn,const int & Interval_, QObject *parent) :
     QObject(parent)
 {
     this->conn_ = conn;
+    Interval = Interval_;
     if (Interval>0){
         this->timer.setInterval(Interval);
         this->timer.setSingleShot(false);
@@ -15,14 +16,14 @@ GreeterClient::GreeterClient(Connect *conn,const int & Interval, QObject *parent
         //this->workerThread.start();
     }
 }
-void GreeterClient::_reset(){
-
-}
+//void GreeterClient::_reset(){
+//
+//}
 
 void GreeterClient::reset(){
-    qDebug()<<"reset";
+    qDebug()<<"reset f";
     //this->workerThread.terminate();
-    this->_reset();
+    //this->_reset();
 }
 GreeterClient::~GreeterClient(){
 

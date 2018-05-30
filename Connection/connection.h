@@ -3,12 +3,13 @@
 #include "listinstrument.h"
 #include "startinstrument.h"
 #include "getlasttime.h"
+#include <QThread>
 
 class Connection
 {
 
 public:
-    Connection(Connect * conn);
+    Connection(Connect * conn,QThread *th);
     ~Connection();
     StartInstrument *startIns;
     ListInstrument *listIns;

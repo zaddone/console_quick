@@ -18,8 +18,10 @@ ApplicationWindow {
         edit.cursorPosition = edit.length
     }
     **/
+    signal handleInput(var input);
     TextEdit {
         id: edit
+        objectName:"edit"
         x: 8
         y: 8
 
@@ -32,7 +34,8 @@ ApplicationWindow {
         //onCursorRectangleChanged: flick.ensureVisible(cursorRectangle)
         Keys.onReturnPressed: {
             //appendModel(text);
-            view.HandleInput(text);
+            //view.HandleInput(text);
+            handleInput(text);
             text= "";
         }
         function getEditHeight(x,y){
@@ -78,6 +81,7 @@ ApplicationWindow {
             listView1.model.remove(1000);
         }
     }
+    /**
     Show{
         id:showWindows
         objectName:"showWindows"
@@ -86,4 +90,11 @@ ApplicationWindow {
         itemHeight:edit.height*2
         itemWidth:edit.width
     }
+
+    Loader {
+       id: myLoader
+       objectName:"myLoader"
+       //source: "MyItem.qml"
+    }
+    **/
 }

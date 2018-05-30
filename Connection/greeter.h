@@ -15,25 +15,27 @@ using console::Greeter;
 class GreeterClient : public QObject
 {
     Q_OBJECT
-    QTimer timer;
+
 public:
-    explicit GreeterClient(Connect *conn, const int &Interval, QObject *parent = nullptr);
+    explicit GreeterClient(Connect *conn, const int &Interval_, QObject *parent = nullptr);
     virtual ~GreeterClient();
     virtual void request()=0;
     virtual void show(const QVariant & val)=0;
+    QTimer timer;
 signals:
     void resultReady(const QVariant &);
     void start();
     void stop();
 public slots:
-    void reset();
+    virtual void reset();
 
 private:
 
 protected:
-    virtual void _reset();
+    //virtual void _reset();
     //std::unique_ptr<Greeter::Stub> stub_;
     Connect *conn_;
+    int Interval;
 
 
 };

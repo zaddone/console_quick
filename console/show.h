@@ -5,6 +5,7 @@
 #include <QThread>
 #include <QHash>
 //#include "connect.h"
+#include <QQmlApplicationEngine>
 #include "../Connection/connection.h"
 //#include "listinstrument.h"
 
@@ -18,6 +19,7 @@ class InputHandleClass:public QObject {
 signals:
     void Handle(const QVariant &t);
     void Handle();
+    void Set(const QVariant &t);
 
 public:
     explicit InputHandleClass(QObject *parent = nullptr);
@@ -33,9 +35,9 @@ class Show : public QObject
     Q_OBJECT
 
 public:
-    explicit Show(QObject * qml,const QString & addr, QObject *parent = nullptr);
+    explicit Show(QQmlApplicationEngine *Engine,const std::shared_ptr< ::grpc::ChannelInterface>&_channel, QObject *parent = nullptr);
     Q_INVOKABLE void HandleInput(const QVariant & state);
-    Q_INVOKABLE void CloseLastTime();
+    //Q_INVOKABLE void CloseLastTime();
     ~Show();
     QThread workerThread;
     void Start();
@@ -44,14 +46,15 @@ signals:
     void resultReady(const QVariant &);
 
 public slots:
-    void request();
+    //void request();
+    void run();
 private:
     //struct clientList{
     //    ListInstrument List;
     //} clientList;
     //QHash<QString,GreeterClient *> clientList;
 
-    QObject * qmlRoot;
+    //QObject * qmlRoot;
     GreeterClient * TmpClient;
 
     Connect con;
@@ -59,6 +62,8 @@ private:
 
     QHash<QString,InputHandleClass *> InputRoute;
     void InitInputRoute();
+
+    InputHandleClass *tmpHand;
 
 
 };

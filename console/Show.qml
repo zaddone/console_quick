@@ -5,6 +5,8 @@ Rectangle {
     property int fontPixelSize
     property int itemWidth
     property int itemHeight
+
+    signal closeLastTime();
     id: container
     anchors.fill: parent
     color: "#100404"
@@ -31,7 +33,8 @@ Rectangle {
         MouseArea {
             anchors.fill: parent
             onClicked: {
-                view.CloseLastTime();
+                closeLastTime();
+                //view.CloseLastTime();
                 lm.clear();
                 container.visible = false;
             }
